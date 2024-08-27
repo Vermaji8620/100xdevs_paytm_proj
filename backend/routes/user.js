@@ -3,7 +3,7 @@ const router = express.Router();
 const JWT_SECRET = require("../config.js");
 const jwt = require("jsonwebtoken");
 const { z } = require("zod");
-const { User } = require("../paytm.model.js");
+const { User, Account } = require("../paytm.model.js");
 const authMiddleware = require("../middleware.js");
 
 const userSchemasignup = z.object({
@@ -34,6 +34,10 @@ router.post("/signup", async (req, res) => {
       firstName: firstName,
       lastName: lastName,
       password: password,
+    });
+    await Account.create({
+      userId,
+      balance: 1 + Math.random() * 10000,
     });
     const token = jwt.sign({ userId: user._id }, JWT_SECRET);
     res
