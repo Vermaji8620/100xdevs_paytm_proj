@@ -3,7 +3,7 @@ const router = express.Router();
 const JWT_SECRET = require("../config.js");
 const jwt = require("jsonwebtoken");
 const { z } = require("zod");
-const { User, find } = require("../paytm.model.js");
+const { User } = require("../paytm.model.js");
 const authMiddleware = require("../middleware.js");
 
 const userSchemasignup = z.object({
