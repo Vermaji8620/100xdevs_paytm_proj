@@ -14,4 +14,4 @@ mongoose
   .connect(
     "mongodb+srv://vadityaraj67:Q6GjYqSO2UFD6xhm@cluster0.yvftnur.mongodb.net/paytm_proj"
   )
-  .then(() => app.listen((3000, console.log("connected"))));
+  .then(() => app.listen(3000));

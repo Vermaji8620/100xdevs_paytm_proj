@@ -36,7 +36,7 @@ router.post("/signup", async (req, res) => {
       password: password,
     });
     await Account.create({
-      userId,
+      userId: user._id,
       balance: 1 + Math.random() * 10000,
     });
     const token = jwt.sign({ userId: user._id }, JWT_SECRET);
@@ -93,9 +93,7 @@ router.post("/update", authMiddleware, async (req, res) => {
     if (!validationResult.success) {
       return res.status(400).json({ message: validationResult.error.errors });
     }
-
-    const finduser = await User.findByIdAndUpdate({ _id: userId }, req.body);
-
+    await User.findByIdAndUpdate({ _id: req.userId }, req.body);
     res.status(200).json({ message: "User updated successfully" });
   } catch (err) {
     res.status(500).json({ message: err.message });

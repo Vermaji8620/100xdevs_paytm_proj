@@ -8,11 +8,7 @@ const authMiddleware = async (req, res, next) => {
   }
   const token = authHeader.split(" ")[1];
   try {
-    const verification = jwt.verify(token, JWT_SECRET, () => {
-      return res
-        .status(401)
-        .json({ message: "Some error occuredd while verifying " });
-    });
+    const verification = jwt.verify(token, JWT_SECRET);
 
     req.userId = verification.userId;
 

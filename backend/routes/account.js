@@ -33,11 +33,11 @@ router.get("/", authMiddleware, async (req, res) => {
 
 //   await Account.updateOne(
 //     {
-//       userId: userId,
+//       userId: req.userId,
 //     },
 //     {
 //       $inc: {
-//         balance: amount,
+//         balance: -amount,
 //       },
 //     }
 //   );
