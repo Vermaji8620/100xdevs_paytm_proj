@@ -7,10 +7,6 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  console.log(firstName);
-  console.log(lastName);
-  console.log(password);
-  console.log(userName);
   return (
     <div>
       <h1>SignUp</h1>
@@ -18,12 +14,16 @@ const Signup = () => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await axios.post("http://localhost:3000/api/v1/user/signup", {
-            firstName,
-            lastName,
-            userName,
-            password,
-          });
+          const response = await axios.post(
+            "http://localhost:3000/api/v1/user/signup",
+            {
+              firstName,
+              lastName,
+              userName,
+              password,
+            }
+          );
+          localStorage.setItem("token", response.data.token);
         }}
       >
         <div>

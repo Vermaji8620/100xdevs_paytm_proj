@@ -9,9 +9,7 @@ const authMiddleware = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     const verification = jwt.verify(token, JWT_SECRET);
-
     req.userId = verification.userId;
-
     next();
   } catch (err) {
     return res.status(500).json({ message: err.message });
